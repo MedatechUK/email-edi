@@ -42,6 +42,7 @@ def send_email(subject, body):
         # After the file is closed
         part['Content-Disposition'] = 'attachment; filename="%s"' % basename(filename)
         message.attach(part)
+        os.remove(f"attachments/{filename}")
         
     text = message.as_string()
     with smtplib.SMTP(SMTP_URL, port) as server:
